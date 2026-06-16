@@ -13,3 +13,8 @@
     "express": "^4.18.2"
   }
 }
+app.use(cors({
+  origin: '*', // Permite que cualquier web se conecte
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
+}));
