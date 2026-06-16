@@ -50,6 +50,23 @@ app.get('/api/productos', async (req, res) => {
     }
 });
 
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Servidor puente Nova Core corriendo en puerto ${PORT}`);
-});
+const listadoProductos = [
+    // --- AQUÍ ESTABAN TUS PRODUCTOS ANTERIORES ---
+    {
+        id: 1,
+        nombre: "Auriculares Gamer Nova Bluetooth",
+        categoria: "tecnologia",
+        precio: 45000,
+        icono: "fa-headphones"
+    },
+    // ... (aquí irían tus otros productos) ...
+
+    // --- AQUÍ PEGAS EL NUEVO PRODUCTO ---
+    {
+        id: 7, 
+        nombre: "Nombre de tu Producto", 
+        categoria: "tecnologia", 
+        precio: 25000, 
+        icono: "fa-box" 
+    } 
+]; //
