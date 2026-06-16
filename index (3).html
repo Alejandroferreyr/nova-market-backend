@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVA MARKET V5.1 | Dynamic E-Commerce Agency</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- ESTILOS DE VANGUARDIA (ESTÉTICA GAMER PRO / CYBERPUNK AZUL) --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #030307;
+            color: #f1f5f9;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Fondo dinámico futurista con rejilla tecnológica y destellos azules */
+        .tech-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, rgba(0, 150, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(0, 150, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .glow-overlay {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 20%, rgba(0, 210, 255, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 70% 60%, rgba(0, 100, 255, 0.05) 0%, transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- NAVBAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(3, 3, 7, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 210, 255, 0.25);
+            box-shadow: 0 4px 30px rgba(0, 210, 255, 0.05);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: #fff;
+            text-shadow: 0 0 12px rgba(0, 210, 255, 0.6);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: #00d2ff;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00d2ff;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+        }
+
+        /* --- PORTADA PREMIUM (HERO) --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 60px 20px;
+            background: radial-gradient(circle at center, rgba(0, 150, 255, 0.1) 0%, transparent 65%);
+        }
+
+        .hero-brand {
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            background: rgba(15, 23, 42, 0.4);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #00d2ff;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.1);
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(180deg, #fff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 25px rgba(0, 210, 255, 0.4));
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            max-width: 650px;
+            margin-bottom: 45px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* --- BOTONES PREMIUM --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-whatsapp {
+            background: #25d366;
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        .btn-instagram {
+            background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(220, 39, 67, 0.3);
+        }
+
+        .btn-instagram:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(220, 39, 67, 0.5);
+        }
+
+        .btn-buy {
+            background: #00d2ff;
+            color: #030307;
+            box-shadow: 0 4px 20px rgba(0, 210, 255, 0.4);
+        }
+
+        .btn-buy:hover {
+            background: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #00d2ff;
+            border: 1px solid rgba(0, 210, 255, 0.4);
+        }
+
+        .btn-outline:hover {
+            background: rgba(0, 210, 255, 0.1);
+            border-color: #00d2ff;
+        }
+
+        /* --- FILTROS DE CATEGORÍA --- */
+        .category-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(15, 23, 42, 0.6);
+            color: #94a3b8;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 10px 22px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: #00d2ff;
+            color: #030307;
+            border-color: #00d2ff;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+        }
+
+        /* --- SECCIONES GENERALES --- */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 60px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .section-title span {
+            color: #00d2ff;
+            text-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+        }
+
+        /* --- GRID DE SERVICIOS --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 3px solid rgba(0, 210, 255, 0.3);
+            border-radius: 12px;
+            padding: 40px 30px;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            background: rgba(15, 23, 42, 0.7);
+            border-color: rgba(0, 210, 255, 0.6);
+            border-top-color: #00d2ff;
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: #00d2ff;
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        /* --- DINAMIC PRODUCTS CATALOG --- */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 340px;
+        }
+
+        .product-card:hover {
+            border-color: rgba(0, 210, 255, 0.5);
+            background: rgba(15, 23, 42, 0.7);
+            box-shadow: 0 8px 25px rgba(0, 210, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .badge-tecnologia { background: rgba(0, 210, 255, 0.15); color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.3); }
+        .badge-ropa { background: rgba(255, 0, 127, 0.15); color: #ff007f; border: 1px solid rgba(255, 0, 127, 0.3); }
+        .badge-agencia { background: rgba(147, 51, 234, 0.15); color: #a855f7; border: 1px solid rgba(147, 51, 234, 0.3); }
+
+        .product-icon-container {
+            font-size: 3rem;
+            margin: 20px 0 15px 0;
+            color: #f1f5f9;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .product-card h4 {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #00d2ff;
+            margin: 10px 0 20px 0;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
+        }
+
+        /* --- GALERÍA --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-box {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            background: linear-gradient(145deg, #0f172a, #020205);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #64748b;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-box:hover {
+            border-color: #00d2ff;
+            color: #00d2ff;
+            transform: scale(1.02);
+        }
+
+        /* --- SECCIÓN DOBLE: FORMULARIO + PAGOS --- */
+        .dual-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 50px;
+        }
+
+        .form-wrapper, .payment-wrapper {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            background: #090d16;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #00d2ff;
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
+        }
+
+        /* Caja info alias */
+        .alias-box {
+            background: #090d16;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border: 1px dashed rgba(0, 156, 242, 0.4);
+            text-align: center;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .alias-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #94a3b8;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .alias-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #00d2ff;
+        }
+
+        .post-copy-actions {
+            display: none;
+            width: 100%;
+            max-width: 300px;
+            animation: fadeIn 0.4s ease forwards;
+            margin-top: 15px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-sub-action {
+            width: 100%;
+            padding: 12px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border-radius: 6px;
+            margin-top: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-mp-direct { background: #009cf2; color: #fff; }
+        .btn-wa-direct { background: #25d366; color: #fff; }
+
+        /* FLOATING WHATSAPP BUTTON */
+        .whatsapp-floating {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-floating:hover { transform: scale(1.1) rotate(12deg); }
+
+        .founder-section {
+            text-align: center;
+            background: linear-gradient(180deg, transparent, rgba(0, 210, 255, 0.03));
+            padding: 60px 20px;
+        }
+
+        footer {
+            background: #010103;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+            color: #475569;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .dual-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tech-bg"></div>
+    <div class="glow-overlay"></div>
+
+    <!-- NAVBAR -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">NOVA<span>MARKET</span></a>
+            <ul class="nav-links">
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#productos">Catálogo Dinámico</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#contacto">Contacto & Pagos</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- PORTADA PREMIUM -->
+    <section class="hero">
+        <div class="hero-brand">V5.1 DYNAMIC CATALOG EDITION</div>
+        <h1>NOVA MARKET</h1>
+        <p>Tu ecosistema comercial premium. Tecnología de alta gama, indumentaria de vanguardia y soluciones de infraestructura digital bajo una misma marca.</p>
+        <div class="hero-buttons">
+            <a href="#productos" class="btn btn-buy"><i class="fas fa-box-open"></i> Ver Catálogo</a>
+            <a href="https://wa.me/5493734402596" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Directo</a>
+        </div>
+    </section>
+
+    <!-- SERVICIOS DE LA AGENCIA -->
+    <section id="servicios">
+        <h2 class="section-title">Infraestructura <span>Digital</span></h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-laptop-code service-icon"></i>
+                <h3>Sistemas E-Commerce</h3>
+                <p>Páginas y estructuras veloces optimizadas para recibir pagos masivos por transferencia y WhatsApp.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-photo-film service-icon"></i>
+                <h3>Producción Audiovisual</h3>
+                <p>Edición de alto impacto optimizada para conversiones en Reels, TikToks y plataformas digitales.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-layer-group service-icon"></i>
+                <h3>Diseño de Identidad</h3>
+                <p>Vectorización y creación de logotipos premium para empresas digitales emergentes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE PRODUCTOS DINÁMICOS -->
+    <section id="productos">
+        <h2 class="section-title">Catálogo de <span>Productos</span></h2>
+        
+        <!-- Botonera de Filtros Interactivos -->
+        <div class="category-filters">
+            <button class="filter-btn active" onclick="filtrarCategoria('todos')">Todos los Productos</button>
+            <button class="filter-btn" onclick="filtrarCategoria('tecnologia')">Tecnología</button>
+            <button class="filter-btn" onclick="filtrarCategoria('ropa')">Ropa & Estilo</button>
+            <button class="filter-btn" onclick="filtrarCategoria('agencia')">Servicios Nova</button>
+        </div>
+
+        <!-- Contenedor donde se inyectan los productos mediante JS -->
+        <div class="products-grid" id="catalogContainer">
+            <!-- El motor de JS cargará los productos aquí de forma inteligente -->
+        </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section id="galeria">
+        <h2 class="section-title">Garantía de <span>Calidad</span></h2>
+        <div class="gallery-grid">
+            <div class="gallery-box"><i class="fas fa-shield-halved" style="font-size:2rem; margin-bottom:10px;"></i><span>Envíos Asegurados</span></div>
+            <div class="gallery-box"><i class="fas fa-bolt" style="font-size:2rem; margin-bottom:10px;"></i><span>Soporte 24/7</span></div>
+            <div class="gallery-box"><i class="fas fa-circle-check" style="font-size:2rem; margin-bottom:10px;"></i><span>Ganancia Controlada</span></div>
+        </div>
+    </section>
+
+    <!-- CONTACTO Y PAGOS -->
+    <section id="contacto">
+        <div class="dual-grid">
+            <div class="form-wrapper">
+                <h3 style="font-size:1.8rem; margin-bottom:10px; color:#fff;">¿Tenés Dudas?</h3>
+                <p style="color:#94a3b8; margin-bottom:25px; font-size:0.95rem;">Escribinos si querés consultar por stock mayorista, talles o especificaciones técnicas de productos.</p>
+                <form action="https://formspree.io/f/placeholder" method="POST">
+                    <div class="form-group">
+                        <label>Nombre Completo</label>
+                        <input type="text" class="form-control" name="name" required placeholder="Tu nombre">
+                    </div>
+                    <div class="form-group">
+                        <label>Mensaje</label>
+                        <textarea class="form-control" name="message" rows="4" required placeholder="¿Sobre qué producto querés consultar?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-buy" style="width:100%; justify-content:center;">Enviar Consulta</button>
+                </form>
+            </div>
+
+            <!-- Caja de pagos interactiva V5 libre de bloqueos -->
+            <div class="payment-wrapper">
+                <i class="fab fa-cc-mastercard mp-logo" style="font-size:3.5rem; color:#009cf2; margin-bottom:15px;"></i>
+                <h3 style="font-size:1.8rem; margin-bottom:15px; color:#fff;">Pagar por Transferencia</h3>
+                <p style="color:#94a3b8; margin-bottom:20px; max-width:340px;">Paso 1: Copiá el alias oficial para transferir desde tu homebanking o billetera virtual.</p>
+                
+                <div class="alias-box">
+                    <div class="alias-title">Alias Mercado Pago</div>
+                    <div class="alias-value" id="aliasText">anibal.777.diques.mp</div>
+                </div>
+
+                <button id="btnCopiar" onclick="ejecutarCopiaV5()" class="btn btn-buy" style="width:100%; max-width:300px; justify-content:center; background:#009cf2; color:#fff;">
+                    <i class="fas fa-copy"></i> Copiar Alias
+                </button>
+
+                <div class="post-copy-actions" id="copyActions">
+                    <p style="font-size:0.85rem; color:#00d2ff; font-weight:700; margin: 10px 0;">Paso 2: Elegí una acción segura:</p>
+                    <a href="https://link.mercadopago.com.ar" target="_blank" class="btn-sub-action btn-mp-direct">
+                        <i class="fas fa-external-link-alt"></i> Abrir Mercado Pago
+                    </a>
+                    <a id="lnkWhatsApp" target="_blank" class="btn-sub-action btn-wa-direct">
+                        <i class="fab fa-whatsapp"></i> Notificar Comprobante
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE EL FUNDADOR -->
+    <div class="founder-section">
+        <p style="color: #64748b;"><strong>Nova Market</strong> es una plataforma de alta fidelidad operada por su desarrollador y fundador, <strong>Alejandro Ferreyra</strong>.</p>
+    </div>
+
+    <!-- BOTÓN FLOTANTE -->
+    <a href="https://wa.me/5493734402596" class="whatsapp-floating" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer>
+        <p>&copy; 2026 NOVA MARKET. Sistema de catálogos e infraestructura digital dinámica. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- INTERACCIONES Y CONTROL DE INVENTARIO DINÁMICO -->
+    <script>
+        const ALIAS_FINAL = "anibal.777.diques.mp";
+        const WHATSAPP_PHONE = "5493734402596";
+
+        /* ========================================================================
+           PLANILLA DE CONTROL DE PRODUCTOS DE NOVA MARKET
+           Acá es donde sumás tus precios con tu GANANCIA YA INCLUIDA.
+           ¡Podés clonar una estructura, cambiarle el nombre, icono, precio y categoría!
+           ========================================================================
+        */
+        const listadoProductos = [
+            // --- TECNOLOGÍA ---
+            {
+                id: 1,
+                nombre: "Auriculares Gamer Nova Bluetooth",
+                categoria: "tecnologia",
+                precio: 45000, // Tu precio final al público (costo + tu ganancia)
+                icono: "fa-headphones"
+            },
+            {
+                id: 2,
+                nombre: "Smartwatch Sport AMOLED",
+                categoria: "tecnologia",
+                precio: 68000,
+                icono: "fa-stopwatch"
+            },
+            {
+                id: 3,
+                nombre: "Teclado Mecánico RGB Pro",
+                categoria: "tecnologia",
+                precio: 52000,
+                icono: "fa-keyboard"
+            },
+            
+            // --- ROPA ---
+            {
+                id: 4,
+                nombre: "Buzo Oversize Premium Streetwear",
+                categoria: "ropa",
+                precio: 38000,
+                icono: "fa-shirt"
+            },
+            {
+                id: 5,
+                nombre: "Gorra Trucker Bordada Nova",
+                categoria: "ropa",
+                precio: 15000,
+                icono: "fa-graduation-cap" 
+            },
+
+            // --- SERVICIOS DE LA AGENCIA ---
+            {
+                id: 6,
+                nombre: "Desarrollo de Landing Page Corporativa",
+                categoria: "agencia",
+                precio: 120000,
+                icono: "fa-code"
+            }
+        ];
+
+        // Función para renderizar los productos en la pantalla automáticamente
+        function cargarCatalogoNova(productosAMostrar) {
+            const container = document.getElementById('catalogContainer');
+            container.innerHTML = ""; // Limpiar antes de dibujar
+
+            if(productosAMostrar.length === 0) {
+                container.innerHTML = "<p style='color:#64748b; text-align:center; grid-column: 1/-1;'>No hay productos en esta categoría por el momento.</p>";
+                return;
+            }
+
+            productosAMostrar.forEach(prod => {
+                // Formatear precio con separador de miles argentino
+                const precioFormateado = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(prod.precio);
+                
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div>
+                        <span class="product-badge badge-${prod.categoria}">${prod.categoria}</span>
+                        <div class="product-icon-container">
+                            <i class="fas ${prod.icono}"></i>
+                        </div>
+                        <h4>${prod.nombre}</h4>
+                    </div>
+                    <div>
+                        <div class="product-price">${precioFormateado}</div>
+                        <button onclick="solicitarCompraDinámica('${prod.nombre}', ${prod.precio})" class="btn btn-outline" style="width:100%; justify-content:center; padding:10px 0;">
+                            <i class="fas fa-shopping-cart"></i> Comprar Ahora
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Sistema de filtros por botón
+        function filtrarCategoria(cat) {
+            // Cambiar clase activa en los botones
+            const botones = document.querySelectorAll('.filter-btn');
+            botones.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if(cat === 'todos') {
+                cargarCatalogoNova(listadoProductos);
+            } else {
+                const filtrados = listadoProductos.filter(p => p.categoria === cat);
+                cargarCatalogoNova(filtrados);
+            }
+        }
+
+        // Procesar la compra mandando el producto exacto con su precio al WhatsApp de Ale
+        function solicitarCompraDinámica(nombre, precio) {
+            const precioFormateado = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(precio);
+            const mensaje = `¡Hola Ale! Quiero comprar el siguiente producto en Nova Market:\n\n📦 *Producto:* ${nombre}\n💰 *Precio Final:* ${precioFormateado}\n\nPasame los datos confirmados así te hago la transferencia del monto.`;
+            window.open("https://wa.me/" + WHATSAPP_PHONE + "?text=" + encodeURIComponent(mensaje), "_blank");
+        }
+
+        // Sistema de copiado seguro e interactivo V5
+        function ejecutarCopiaV5() {
+            navigator.clipboard.writeText(ALIAS_FINAL).then(() => {
+                const btn = document.getElementById('btnCopiar');
+                const actionsBlock = document.getElementById('copyActions');
+                const lnkWa = document.getElementById('lnkWhatsApp');
+
+                btn.innerHTML = "<i class='fas fa-check'></i> ¡Alias Copiado!";
+                btn.style.background = "#25d366";
+
+                const textoMensaje = `¡Hola Ale! Ya copié tu alias '${ALIAS_FINAL}' y estoy haciendo la transferencia de mi pedido. Avisame cuando te figure para coordinar el envío.`;
+                lnkWa.href = "https://wa.me/" + WHATSAPP_PHONE + "?text=" + encodeURIComponent(textoMensaje);
+
+                actionsBlock.style.display = "block";
+            });
+        }
+
+        // Carga inicial al abrir la página
+        window.onload = function() {
+            cargarCatalogoNova(listadoProductos);
+        };
+    </script>
+</body>
+</html>
